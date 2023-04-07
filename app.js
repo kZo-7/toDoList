@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+//all the exports of module "date.js" are binded by the const "date"
+const date = require(__dirname + "/date.js");
 let ejs = require("ejs");
 
 const app = express();
-
+//if we had to assign a new value into tasks array, then we had to assign tasks[] into a var
 const tasks = ["Say good morning to yourself 🎈"];
 const workTasks = [];
 
@@ -17,13 +19,8 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
-    let today = new Date();
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-    let currentDay = today.toLocaleDateString("en-us", options);
+    //Here we activate the function getDate inside module date.js
+    let currentDay = date.getDate();
        
     //render the file "list.ejs" which is in Folder "views" and pass the data of var "day" into var "cDate"
     res.render("list", {
