@@ -19,7 +19,7 @@ app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 
-//create home route and render home page
+//create home route and render home page 
 app.get("/", function (req, res) {
     //Here we activate the function getDate inside module date.js
     let currentDay = date.getDate();
